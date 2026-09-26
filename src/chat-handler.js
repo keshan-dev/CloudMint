@@ -370,10 +370,11 @@ export async function handleChatRequest(request, env = {}) {
       { status: 200, headers }
     );
   } catch (err) {
-    // Fail Closed: Return generic error, never leak stack trace or internals
+    console.error('Unhandled runtime error in handleChatRequest:', err);
     return new Response(
       JSON.stringify({
         error: 'An internal error occurred while processing your request.',
+        details: err?.message || String(err),
         requestId
       }),
       { status: 500, headers }
