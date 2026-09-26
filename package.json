@@ -1,0 +1,25 @@
+{
+  "name": "cloudmint-ai-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CloudMint SaaS demonstration website with Cloudflare Workers AI and Rotwatch audit support",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public --binding AI=cf-ai",
+    "test": "node --test tests/*.test.js",
+    "lint": "eslint public/js/ src/ tests/",
+    "audit": "npm audit --audit-level=high"
+  },
+  "keywords": [
+    "cloudmint",
+    "cloudflare-pages",
+    "workers-ai",
+    "turnstile",
+    "rotwatch"
+  ],
+  "author": "CloudMint Team",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "wrangler": "^3.100.0"
+  }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudMint — Features & Technical Specifications</title>
+  <meta name="description" content="Explore technical features of CloudMint: REST, gRPC, WebSockets, SHA-256 integrity validation, and zero-trust IAM.">
+  <meta name="rotwatch-verification" content="rotwatch-verify-cm-78291">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-link" aria-label="CloudMint Home">
+        <img src="favicon.svg" alt="CloudMint Logo" class="brand-icon" width="32" height="32">
+        <span>CloudMint</span>
+      </a>
+
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="product.html" class="nav-link">Product</a></li>
+        <li><a href="features.html" class="nav-link active">Features</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="product.html#pricing" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero-section" style="padding-bottom: 2rem;">
+      <div class="container hero-content">
+        <div class="badge">Engineered for Scale</div>
+        <h1 class="hero-title">
+          Enterprise Features.<br>
+          <span class="gradient-text">Zero Infrastructure Complexity.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Everything developers need to build high-performance data pipelines, secure microservices, and resilient global architectures.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cards-grid">
+          <div class="card">
+            <h3 class="card-title">Multi-Protocol Ingestion</h3>
+            <p class="card-desc">Native interoperability for <strong>REST API</strong>, <strong>gRPC</strong>, and bidirectional <strong>WebSockets</strong> without requiring API gateways or transformation proxies.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Cryptographic Integrity</h3>
+            <p class="card-desc">Automatic SHA-256 payload checksums calculated at edge ingress and verified at every storage tier to prevent silent bit rot or tampering.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Zero-Trust IAM &amp; OIDC</h3>
+            <p class="card-desc">Seamless integration with modern identity providers (Okta, Auth0, Google Workspace, Azure AD) using short-lived JWT tokens.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Audit Logging &amp; SIEM Export</h3>
+            <p class="card-desc">Immutable audit logs stream directly to Datadog, Splunk, or AWS CloudWatch with sub-second event propagation.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Sub-15ms Edge Routing</h3>
+            <p class="card-desc">Anycast routing directs traffic to the topologically closest edge node among 250+ global locations.</p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Air-Gapped Cold Snapshots</h3>
+            <p class="card-desc">Scheduled point-in-time snapshots stored in immutable object lock storage for ransomware defense and regulatory compliance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-link">
+            <img src="favicon.svg" alt="CloudMint" class="brand-icon" width="28" height="28">
+            <span>CloudMint</span>
+          </a>
+          <p>Simplify the Cloud. Accelerate Your Work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="product.html" class="footer-link">Overview</a></li>
+            <li><a href="features.html" class="footer-link">Features</a></li>
+            <li><a href="product.html#pricing" class="footer-link">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal & Safety</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+            <li><a href=".well-known/rotwatch-verification.txt" class="footer-link">Auditor Verification</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2024–2026 CloudMint, Inc. All rights reserved.</div>
+        <div>Auditable AI Target for Rotwatch</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot Widget -->
+  <button id="cloudmint-chat-launcher" class="chat-launcher-btn" aria-label="Open CloudMint Assistant" aria-expanded="false">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="chat-launcher-badge"></span>
+  </button>
+  <aside id="cloudmint-chat-container" class="chat-window hidden" role="dialog" aria-labelledby="chat-window-title" aria-modal="false" data-rotwatch-widget="active">
+    <header class="chat-header">
+      <div class="chat-header-info">
+        <img src="favicon.svg" alt="Assistant" width="24" height="24">
+        <div>
+          <div id="chat-window-title" class="chat-header-title">CloudMint Assistant</div>
+          <div class="chat-status-indicator">
+            <span class="chat-status-dot"></span>
+            <span>Workers AI Online</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button id="chat-clear-btn" class="chat-icon-btn" aria-label="Clear conversation" title="Clear conversation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </button>
+        <button id="chat-close-btn" class="chat-icon-btn" aria-label="Close assistant" title="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </header>
+    <div id="cloudmint-chat-messages" class="chat-messages" role="log" aria-live="polite">
+      <div class="chat-bubble chat-bubble-assistant">
+        Hello! You are browsing CloudMint's feature catalog. You can ask me about supported protocols (REST, gRPC, WebSocket) or security integrity mechanisms.
+      </div>
+    </div>
+    <div id="cloudmint-turnstile-container" style="display: flex; justify-content: center; padding: 4px;"></div>
+    <footer class="chat-input-area">
+      <form id="cloudmint-chat-form" class="chat-form">
+        <div class="chat-textarea-wrapper">
+          <textarea id="cloudmint-chat-input" class="chat-input" placeholder="Ask about features..." rows="1" maxlength="500" aria-label="Ask CloudMint Assistant"></textarea>
+          <button id="cloudmint-chat-send" type="submit" class="chat-send-btn" aria-label="Send message" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div class="chat-meta-bar">
+          <span id="chat-char-counter">0 / 500</span>
+          <span>Powered by Cloudflare Workers AI</span>
+        </div>
+      </form>
+    </footer>
+  </aside>
+
+  <script src="js/app.js"></script>
+  <script src="js/consent.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

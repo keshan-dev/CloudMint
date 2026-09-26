@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudMint — Privacy Policy & AI Data Practices</title>
+  <meta name="description" content="CloudMint Privacy Policy detailing data collection, AI chatbot processing, zero model training, and Cloudflare security telemetry.">
+  <meta name="rotwatch-verification" content="rotwatch-verify-cm-78291">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-link" aria-label="CloudMint Home">
+        <img src="favicon.svg" alt="CloudMint Logo" class="brand-icon" width="32" height="32">
+        <span>CloudMint</span>
+      </a>
+
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="product.html" class="nav-link">Product</a></li>
+        <li><a href="features.html" class="nav-link">Features</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="product.html#pricing" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero-section" style="padding-bottom: 2rem;">
+      <div class="container hero-content">
+        <div class="badge">Legal Disclosures</div>
+        <h1 class="hero-title">
+          Privacy Policy &amp;<br>
+          <span class="gradient-text">Data Processing Practices</span>
+        </h1>
+        <p class="hero-subtitle">
+          Effective Date: September 26, 2026. Learn how CloudMint and our AI assistant handle information.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="legal-content">
+          <div class="legal-notice-box">
+            <strong style="color: var(--mint-light); display: block; margin-bottom: 0.25rem;">Mandatory AI Assistant Warning</strong>
+            <p style="margin: 0; font-size: 0.9375rem; color: var(--text-primary);">
+              CloudMint includes an AI-powered assistant. Messages submitted to the assistant are processed to generate responses. Do not submit passwords, payment information, authentication codes, or other sensitive personal information.
+            </p>
+          </div>
+
+          <h2>1. Overview and Scope</h2>
+          <p>
+            CloudMint, Inc. ("CloudMint", "we", "us") respects your privacy. This policy describes our practices regarding information collected through our website (cloudmint-demo.pages.dev), our customer contact forms, and our interactive CloudMint Assistant chatbot.
+          </p>
+
+          <h2>2. Data Collected by the Site</h2>
+          <p>We collect only minimal information necessary to deliver, protect, and optimize our services:</p>
+          <ul>
+            <li><strong>Technical &amp; Telemetry Data:</strong> Client IP address (masked in logs), browser user-agent, request timestamps, and referring URLs collected at the edge for rate limiting and bot mitigation.</li>
+            <li><strong>Contact Submissions:</strong> Your name, work email address, and inquiry message when you submit the contact form.</li>
+            <li><strong>Local Storage:</strong> We use browser localStorage solely to persist your telemetry consent choice. No tracking cookies or cross-site tracking scripts are loaded.</li>
+          </ul>
+
+          <h2>3. AI Assistant Data Processing</h2>
+          <p>
+            When you interact with the CloudMint Assistant, your messages and short-term dialogue context are transmitted to our serverless endpoint (<code>/api/chat</code>) hosted on Cloudflare.
+          </p>
+          <ul>
+            <li><strong>Inference Provider:</strong> Inference is executed using Cloudflare Workers AI. Cloudflare operates under strict data-protection agreements and does not retain your prompts to train foundation models.</li>
+            <li><strong>Retention Policy:</strong> Chat conversations are maintained in-memory only during your active session. We do not store persistent chat history in local storage or permanent databases.</li>
+            <li><strong>Verification Tokens:</strong> To prevent denial-of-service abuse, interaction tokens generated by Cloudflare Turnstile are verified server-side. Turnstile does not track users across websites.</li>
+          </ul>
+
+          <h2>4. Third-Party Infrastructure Services</h2>
+          <p>
+            CloudMint utilizes Cloudflare, Inc. for edge hosting (Cloudflare Pages), DNS, web application firewall (WAF), Bot Fight Mode, and serverless AI compute. All network traffic between your client and CloudMint is encrypted via TLS 1.3.
+          </p>
+
+          <h2>5. User Rights &amp; Contact Inquiries</h2>
+          <p>
+            If you have questions regarding this Privacy Policy, wish to request deletion of contact form submissions, or need security disclosures, contact our privacy officer at <a href="mailto:support@cloudmint.io">support@cloudmint.io</a>.
+          </p>
+
+          <h2>6. Changes to This Policy</h2>
+          <p>
+            We may update this policy periodically to reflect changes in our technology or legal requirements. Material updates will be indicated by revising the effective date at the top of this page.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-link">
+            <img src="favicon.svg" alt="CloudMint" class="brand-icon" width="28" height="28">
+            <span>CloudMint</span>
+          </a>
+          <p>Simplify the Cloud. Accelerate Your Work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="product.html" class="footer-link">Overview</a></li>
+            <li><a href="features.html" class="footer-link">Features</a></li>
+            <li><a href="product.html#pricing" class="footer-link">Pricing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal & Safety</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms of Service</a></li>
+            <li><a href=".well-known/rotwatch-verification.txt" class="footer-link">Auditor Verification</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2024–2026 CloudMint, Inc. All rights reserved.</div>
+        <div>Auditable AI Target for Rotwatch</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot Widget -->
+  <button id="cloudmint-chat-launcher" class="chat-launcher-btn" aria-label="Open CloudMint Assistant" aria-expanded="false">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="chat-launcher-badge"></span>
+  </button>
+  <aside id="cloudmint-chat-container" class="chat-window hidden" role="dialog" aria-labelledby="chat-window-title" aria-modal="false" data-rotwatch-widget="active">
+    <header class="chat-header">
+      <div class="chat-header-info">
+        <img src="favicon.svg" alt="Assistant" width="24" height="24">
+        <div>
+          <div id="chat-window-title" class="chat-header-title">CloudMint Assistant</div>
+          <div class="chat-status-indicator">
+            <span class="chat-status-dot"></span>
+            <span>Workers AI Online</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button id="chat-clear-btn" class="chat-icon-btn" aria-label="Clear conversation" title="Clear conversation">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </button>
+        <button id="chat-close-btn" class="chat-icon-btn" aria-label="Close assistant" title="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </header>
+    <div id="cloudmint-chat-messages" class="chat-messages" role="log" aria-live="polite">
+      <div class="chat-bubble chat-bubble-assistant">
+        Hello! You are reading our Privacy Policy. You can ask me how CloudMint processes AI chat data or how we handle telemetry.
+      </div>
+    </div>
+    <div id="cloudmint-turnstile-container" style="display: flex; justify-content: center; padding: 4px;"></div>
+    <footer class="chat-input-area">
+      <form id="cloudmint-chat-form" class="chat-form">
+        <div class="chat-textarea-wrapper">
+          <textarea id="cloudmint-chat-input" class="chat-input" placeholder="Ask about privacy or security..." rows="1" maxlength="500" aria-label="Ask CloudMint Assistant"></textarea>
+          <button id="cloudmint-chat-send" type="submit" class="chat-send-btn" aria-label="Send message" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div class="chat-meta-bar">
+          <span id="chat-char-counter">0 / 500</span>
+          <span>Powered by Cloudflare Workers AI</span>
+        </div>
+      </form>
+    </footer>
+  </aside>
+
+  <script src="js/app.js"></script>
+  <script src="js/consent.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>

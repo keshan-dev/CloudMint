@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cloudmint-demo.pages.dev/sitemap.xml

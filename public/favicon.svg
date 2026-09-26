@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="cloudGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#064E3B"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="16" y1="20" x2="48" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0B0F19"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+  <path d="M46 38.5C47.933 38.5 49.5 36.933 49.5 35C49.5 33.067 47.933 31.5 46 31.5C45.83 31.5 45.66 31.51 45.5 31.54C44.75 26.68 40.59 23 35.5 23C31.57 23 28.17 25.18 26.39 28.43C25.64 28.16 24.84 28 24 28C20.13 28 17 31.13 17 35C17 38.87 20.13 42 24 42H45.5C45.67 42 45.83 41.99 46 41.96" stroke="url(#glowGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="34" cy="33" r="2.5" fill="#34D399"/>
+  <circle cx="42" cy="36" r="2" fill="#10B981"/>
+</svg>

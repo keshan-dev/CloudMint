@@ -1,0 +1,14 @@
+name = "cloudmint-ai-demo"
+compatibility_date = "2024-09-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "public"
+
+[ai]
+binding = "AI"
+
+[vars]
+ENVIRONMENT = "production"
+# Public Cloudflare Turnstile Site Key (replaceable with live dashboard key)
+TURNSTILE_SITE_KEY = "0x4AAAAAAFEKqEOuAZ8dU8sW"
+# Standard test domain verification token for Rotwatch auditor
+ROTWATCH_VERIFICATION_TOKEN = "rotwatch-verify-cm-78291"

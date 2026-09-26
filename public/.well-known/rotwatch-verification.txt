@@ -1,0 +1,5 @@
+token=rotwatch-verify-cm-78291
+domain=cloudmint-demo.pages.dev
+issued_for=Rotwatch-Audit-Engine
+target_name=CloudMint
+verification_timestamp=2026-09-26T12:00:00Z
