@@ -178,7 +178,7 @@
         let serverErrorMsg = '';
         try {
           const errData = await response.json();
-          serverErrorMsg = errData.error || '';
+          serverErrorMsg = errData.details || errData.error || '';
         } catch (_) {}
         handleHttpError(response.status, serverErrorMsg);
         return;

@@ -1,6 +1,6 @@
 /**
  * CloudMint — Cloudflare Pages Functions Route: /api/chat
- * Self-contained serverless endpoint handling Turnstile, rate limiting, and Workers AI.
+ * Ultra-resilient serverless endpoint with top-level error trapping and fallback.
  */
 
 const rateLimitCache = new Map();
@@ -11,6 +11,15 @@ const MAX_BODY_BYTES = 8192;
 const MAX_MESSAGE_LENGTH = 500;
 const MAX_HISTORY_ITEMS = 6;
 const MAX_HISTORY_CONTENT_LENGTH = 1000;
+
+function generateId() {
+  try {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+  } catch (_) {}
+  return 'cm-' + Date.now().toString(36) + '-' + Math.random().toString(36).substring(2, 9);
+}
 
 const INJECTION_PATTERNS = [
   /ignore\s+(all\s+)?(previous|prior)\s+instructions/i,
@@ -121,6 +130,7 @@ function checkRateLimit(clientIp, isAuditor = false) {
 
 async function verifyTurnstileToken(token, secretKey, clientIp) {
   if (!token) return false;
+  // If test key or placeholder, allow in dev mode
   if (!secretKey || secretKey === '1x0000000000000000000000000000000AA') return true;
 
   try {
@@ -139,6 +149,7 @@ async function verifyTurnstileToken(token, secretKey, clientIp) {
     const outcome = await res.json();
     return Boolean(outcome.success);
   } catch (err) {
+    console.error('Turnstile siteverify error:', err);
     return false;
   }
 }
@@ -150,8 +161,9 @@ async function runAI(aiBinding, message, history = []) {
     { role: 'user', content: message }
   ];
 
+  // If Workers AI binding is not configured in dashboard, return factual ground truth
   if (!aiBinding || typeof aiBinding.run !== 'function') {
-    return 'CloudMint offers two plans: the Starter Plan at $19/month (100 GB storage) and the Pro Plan at $79/month (unlimited storage). We support REST, gRPC, and WebSockets.';
+    return 'CloudMint offers two transparent plans: the Starter Plan at $19/month (100 GB storage) and the Pro Plan at $79/month (unlimited storage). We support REST, gRPC, and WebSockets. Contact: support@cloudmint.io.';
   }
 
   // 1. Try Primary Model: Llama 3.1 8B Instruct
@@ -182,7 +194,7 @@ async function runAI(aiBinding, message, history = []) {
     console.warn('Mistral fallback attempt error:', e2?.message);
   }
 
-  // 3. Knowledge Recovery
+  // 3. Resilient Ground-Truth Recovery
   const lower = message.toLowerCase();
   if (lower.includes('plan') || lower.includes('price') || lower.includes('cost')) {
     return 'CloudMint offers two transparent plans: the Starter Plan at $19/month (100 GB storage, 5 edge nodes) and the Pro Plan at $79/month (unlimited storage, custom domain routing, and priority 24/7 support with 99.99% SLA).';
@@ -196,76 +208,77 @@ async function runAI(aiBinding, message, history = []) {
 }
 
 export async function onRequest(context) {
-  const { request, env } = context;
-  const requestId = crypto.randomUUID();
   const headers = {
     'Content-Type': 'application/json',
-    'X-Request-Id': requestId,
     'X-Content-Type-Options': 'nosniff',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, X-Rotwatch-Audit-Key'
   };
 
-  if (request.method === 'OPTIONS') {
-    return new Response(null, { status: 204, headers });
-  }
-
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method Not Allowed. Use POST.' }), {
-      status: 405,
-      headers: { ...headers, Allow: 'POST, OPTIONS' }
-    });
-  }
-
-  const clientIp = request.headers.get('CF-Connecting-IP') || '127.0.0.1';
-  const providedAuditKey = request.headers.get('X-Rotwatch-Audit-Key');
-  const configuredAuditKey = env?.ROTWATCH_AUDIT_KEY || 'rotwatch-audit-secret-key-placeholder';
-  const isAuditor = Boolean(providedAuditKey && providedAuditKey === configuredAuditKey);
-
-  if (!checkRateLimit(clientIp, isAuditor)) {
-    return new Response(
-      JSON.stringify({ error: 'Rate limit exceeded: 5 requests per minute allowed.', requestId }),
-      { status: 429, headers: { ...headers, 'Retry-After': '60' } }
-    );
-  }
-
-  let body;
   try {
-    const rawBody = await request.text();
-    if (rawBody.length > MAX_BODY_BYTES) {
-      return new Response(JSON.stringify({ error: 'Payload Too Large. Maximum size is 8KB.' }), {
-        status: 413,
+    const { request, env } = context;
+    const requestId = generateId();
+    headers['X-Request-Id'] = requestId;
+
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers });
+    }
+
+    if (request.method !== 'POST') {
+      return new Response(JSON.stringify({ error: 'Method Not Allowed. Use POST.' }), {
+        status: 405,
+        headers: { ...headers, Allow: 'POST, OPTIONS' }
+      });
+    }
+
+    const clientIp = request.headers.get('CF-Connecting-IP') || '127.0.0.1';
+    const providedAuditKey = request.headers.get('X-Rotwatch-Audit-Key');
+    const configuredAuditKey = env?.ROTWATCH_AUDIT_KEY || 'rotwatch-audit-secret-key-placeholder';
+    const isAuditor = Boolean(providedAuditKey && providedAuditKey === configuredAuditKey);
+
+    if (!checkRateLimit(clientIp, isAuditor)) {
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded: 5 requests per minute allowed.', requestId }),
+        { status: 429, headers: { ...headers, 'Retry-After': '60' } }
+      );
+    }
+
+    let body;
+    try {
+      const rawBody = await request.text();
+      if (rawBody.length > MAX_BODY_BYTES) {
+        return new Response(JSON.stringify({ error: 'Payload Too Large. Maximum size is 8KB.' }), {
+          status: 413,
+          headers
+        });
+      }
+      body = JSON.parse(rawBody);
+    } catch (err) {
+      return new Response(JSON.stringify({ error: 'Malformed JSON payload.' }), {
+        status: 400,
         headers
       });
     }
-    body = JSON.parse(rawBody);
-  } catch (err) {
-    return new Response(JSON.stringify({ error: 'Malformed JSON payload.' }), {
-      status: 400,
-      headers
-    });
-  }
 
-  const validation = validatePayload(body);
-  if (!validation.valid) {
-    const status = validation.isSecurityViolation ? 403 : 400;
-    return new Response(JSON.stringify({ error: validation.error, requestId }), { status, headers });
-  }
-
-  if (!isAuditor) {
-    const turnstileSecret = env?.TURNSTILE_SECRET_KEY || '1x0000000000000000000000000000000AA';
-    const isHuman = await verifyTurnstileToken(validation.turnstileToken, turnstileSecret, clientIp);
-
-    if (!isHuman) {
-      return new Response(
-        JSON.stringify({ error: 'Turnstile verification failed or token missing.', requestId }),
-        { status: 403, headers }
-      );
+    const validation = validatePayload(body);
+    if (!validation.valid) {
+      const status = validation.isSecurityViolation ? 403 : 400;
+      return new Response(JSON.stringify({ error: validation.error, requestId }), { status, headers });
     }
-  }
 
-  try {
+    if (!isAuditor) {
+      const turnstileSecret = env?.TURNSTILE_SECRET_KEY || '1x0000000000000000000000000000000AA';
+      const isHuman = await verifyTurnstileToken(validation.turnstileToken, turnstileSecret, clientIp);
+
+      if (!isHuman) {
+        return new Response(
+          JSON.stringify({ error: 'Turnstile verification failed or token missing.', requestId }),
+          { status: 403, headers }
+        );
+      }
+    }
+
     const answer = await runAI(env?.AI, validation.sanitizedMessage, validation.sanitizedHistory);
     return new Response(
       JSON.stringify({
@@ -276,12 +289,12 @@ export async function onRequest(context) {
       }),
       { status: 200, headers }
     );
-  } catch (err) {
-    console.error('Unhandled runtime error in /api/chat:', err);
+  } catch (fatalError) {
+    console.error('Fatal unhandled error in /api/chat:', fatalError);
     return new Response(
       JSON.stringify({
-        error: 'An internal error occurred while processing your request.',
-        requestId
+        error: 'Backend execution error',
+        details: fatalError?.message || String(fatalError)
       }),
       { status: 500, headers }
     );
