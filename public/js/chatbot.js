@@ -175,7 +175,12 @@
       loadingElem.remove();
 
       if (!response.ok) {
-        handleHttpError(response.status);
+        let serverErrorMsg = '';
+        try {
+          const errData = await response.json();
+          serverErrorMsg = errData.error || '';
+        } catch (_) {}
+        handleHttpError(response.status, serverErrorMsg);
         return;
       }
 
@@ -249,15 +254,19 @@
   }
 
   // 8. Error Handling
-  function handleHttpError(statusCode) {
-    if (statusCode === 429) {
-      appendSystemMessage('Rate limit exceeded: 5 requests per minute allowed. Please wait 60 seconds.');
+  function handleHttpError(statusCode, serverErrorMsg = '') {
+    console.error(`CloudMint API Error [${statusCode}]:`, serverErrorMsg);
+
+    if (statusCode === 404) {
+      appendSystemMessage('Endpoint /api/chat not found (404). If deploying via Direct Upload, ensure Cloudflare Pages Functions are included.');
+    } else if (statusCode === 429) {
+      appendSystemMessage(serverErrorMsg || 'Rate limit exceeded: 5 requests per minute allowed. Please wait 60 seconds.');
     } else if (statusCode === 403) {
-      appendSystemMessage('Security check failed: Request was rejected by application verification filters.');
+      appendSystemMessage(serverErrorMsg || 'Security check failed: Request was rejected by application verification filters.');
     } else if (statusCode === 400 || statusCode === 413) {
-      appendSystemMessage('Invalid request: Message was rejected or payload was too large.');
+      appendSystemMessage(serverErrorMsg || 'Invalid request: Message was rejected or payload was too large.');
     } else {
-      appendSystemMessage('Assistant service encountered an internal error. Please try again later.');
+      appendSystemMessage(serverErrorMsg || `Assistant service encountered an internal error (${statusCode}). Check Workers AI binding in Pages settings.`);
     }
   }
 })();
