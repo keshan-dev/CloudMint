@@ -11,4 +11,4 @@ ENVIRONMENT = "production"
 # Public Cloudflare Turnstile Site Key (replaceable with live dashboard key)
 TURNSTILE_SITE_KEY = "0x4AAAAAAFEKqEOuAZ8dU8sW"
 # Standard test domain verification token for Rotwatch auditor
-ROTWATCH_VERIFICATION_TOKEN = "rotwatch-verify-cm-78291"
+ROTWATCH_VERIFICATION_TOKEN = "v2.1790709312.930340ad749e09eb663285a002992235f2b5723bad691347e7b5b6cb9596c6a2.eb27918e780db0e92dc6681bac073a467ddbec15ec395a8d104e1ffb92e5bec5"
