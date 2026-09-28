@@ -39,14 +39,12 @@ Rotwatch's five integration flows connect to CloudMint as follows:
 Rotwatch can verify domain ownership through two publicly copyable/queryable methods:
 1. **HTML Meta Tag**:
    ```html
-   <meta name="rotwatch-verification" content="rotwatch-verify-cm-78291">
+   <meta name="rotwatch-verification" content="v2.1790709312.930340ad749e09eb663285a002992235f2b5723bad691347e7b5b6cb9596c6a2.eb27918e780db0e92dc6681bac073a467ddbec15ec395a8d104e1ffb92e5bec5">
    ```
 2. **Well-Known Verification Endpoint**:
    ```text
    GET /.well-known/rotwatch-verification.txt
-   token=rotwatch-verify-cm-78291
-   domain=cloudmint-demo.pages.dev
-   issued_for=Rotwatch-Audit-Engine
+   v2.1790709312.930340ad749e09eb663285a002992235f2b5723bad691347e7b5b6cb9596c6a2.eb27918e780db0e92dc6681bac073a467ddbec15ec395a8d104e1ffb92e5bec5
    ```
    *Note: Per requirements, DNS/domain ownership tokens are public and copyable. Private chatbot credentials and API keys are never rendered in the browser.*
 
